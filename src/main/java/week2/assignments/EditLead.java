@@ -59,10 +59,7 @@ public class EditLead {
 		{
 			System.out.println("Edited text is printed corerectly");
 		}
-		
-		
-		
-		
+			
 		
 	}
 }

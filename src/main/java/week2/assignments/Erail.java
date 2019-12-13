@@ -1,7 +1,8 @@
 package week2.assignments;
+import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
-
-
+import java.util.Set;
 
 import org.openqa.selenium.By;
 
@@ -56,7 +57,7 @@ public class Erail {
 
                      {
 
-                                     driver.findElementByXPath("//input[@id='chkSelectDateOnly' and @type='checkbox']").click();      
+                        driver.findElementByXPath("//input[@id='chkSelectDateOnly' and @type='checkbox']").click();      
 
                      }
 
@@ -64,14 +65,33 @@ public class Erail {
 
                      driver.findElementById("buttonFromTo").click();
 
-                     Thread.sleep(3000);
+                     Thread.sleep(4000);
 
                     
 
-                     WebElement traintable = driver.findElementByXPath("//table[@class='DataTable TrainList TrainListHeader']");
-
+                     List<WebElement> traintable = driver.findElementsByXPath("//table[@class='DataTable TrainList TrainListHeader']//td[2]");
+                     
+                     Set<String> storenames = new LinkedHashSet<>();
+                     for (WebElement trainnames : traintable) {
+						//System.out.println(trainnames);
+                    	String e= trainnames.getText();
+                    	 storenames.add(e);
+					} 
+                     System.out.println("orginal size:"+traintable.size());
+                     System.out.println("Size of set:"+storenames.size());
+                     int size1 = traintable.size();
+                     int size2 = storenames.size();
+                     
+                     if (size1 == size2) {
+                    	 System.out.println("No duplicates in train names");
+						
+					} else {
+						System.out.println("duplicates present in train names");
+					}
                     
-
+                   /*Set<String> trainNames = new LinkedHashSet<>();
+                   System.out.println("After set implimentation:"+trainNames.size()); */
+/*
                      // rows are static , print all the data present  in first row(All details of first train)
 
                      List<WebElement> rows = traintable.findElements(By.tagName("tr"));
@@ -87,8 +107,8 @@ public class Erail {
                      }
 
                     
-
-                     /*
+                     
+                     
                       //columns are static , print all the train names
 
                      List<WebElement> tabrow = traintable.findElements(By.tagName("tr"));
@@ -109,25 +129,25 @@ public class Erail {
 
                     
 
-                                     //for (int i = 1; i < R1col.size(); i++)
+                                     for (int i = 1; i < R1col.size(); i++)
 
-                                     //{
+                                     {
 
-                                                     System.out.print(R1col.get(2).getText());
+                                                     System.out.print(R1col.get(i).getText());
 
                                                     
 
-                                     //}
+                                     }
 
                                      System.out.println();
 
-                     }*/
+                     }
 
                     
 
 
                     
-
+*/
      }
 
 
